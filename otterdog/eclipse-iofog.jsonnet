@@ -1,6 +1,6 @@
 local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
-orgs.newOrg('eclipse-iofog') {
+orgs.newOrg('iot.iofog', 'eclipse-iofog') {
   settings+: {
     blog: "https://iofog.org",
     description: "",
