@@ -19,6 +19,8 @@ orgs.newOrg('iot.iofog', 'eclipse-iofog') {
       default_branch: "develop",
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
+      description: "Eclipse ioFog™ is a complete edge computing platform that provides all of the pieces needed to build and run applications at the edge at enterprise scale.",
+      homepage: "https://projects.eclipse.org/projects/iot.iofog",
       web_commit_signoff_required: false,
       workflows+: {
         default_workflow_permissions: "write",
@@ -143,6 +145,11 @@ orgs.newOrg('iot.iofog', 'eclipse-iofog') {
       workflows+: {
         default_workflow_permissions: "write",
       },
+      secrets: [
+        orgs.newRepoSecret('NODE_AUTH_TOKEN') {
+          value: "********",
+        },
+      ],
     },
     orgs.newRepo('HardwareAbstraction') {
       allow_merge_commit: true,
