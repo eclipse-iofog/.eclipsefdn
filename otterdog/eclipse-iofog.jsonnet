@@ -952,18 +952,6 @@ orgs.newOrg('iot.iofog', 'eclipse-iofog') {
         },
       ],
     },
-      ],
-      branch_protection_rules: [
-        orgs.newBranchProtectionRule('develop') {
-          required_approving_review_count: null,
-          requires_pull_request: false,
-          requires_status_checks: false,
-        },
-        orgs.newBranchProtectionRule('master') {
-          requires_status_checks: false,
-        },
-      ],
-    },
   ],
 } + {
   # snippet added due to 'https://github.com/EclipseFdn/otterdog-configs/blob/main/blueprints/add-dot-github-repo.yml'
