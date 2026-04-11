@@ -959,6 +959,7 @@ orgs.newOrg('iot.iofog', 'eclipse-iofog') {
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
       web_commit_signoff_required: false,
+      private: true
       workflows+: {
         default_workflow_permissions: "write",
       },
