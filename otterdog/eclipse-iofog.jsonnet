@@ -952,30 +952,6 @@ orgs.newOrg('iot.iofog', 'eclipse-iofog') {
         },
       ],
     },
-      orgs.newRepo('downloads.iofog.org') {
-      allow_merge_commit: true,
-      allow_update_branch: false,
-      default_branch: "develop",
-      delete_branch_on_merge: false,
-      dependabot_security_updates_enabled: true,
-      web_commit_signoff_required: false,
-      private: true,
-      workflows+: {
-        default_workflow_permissions: "write",
-      },
-      webhooks: [
-        orgs.newRepoWebhook('https://notify.travis-ci.org') {
-          events+: [
-            "create",
-            "delete",
-            "issue_comment",
-            "member",
-            "public",
-            "pull_request",
-            "push",
-            "repository"
-          ],
-        },
       ],
       branch_protection_rules: [
         orgs.newBranchProtectionRule('develop') {
