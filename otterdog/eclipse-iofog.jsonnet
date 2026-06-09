@@ -959,6 +959,21 @@ orgs.newOrg('iot.iofog', 'eclipse-iofog') {
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
       description: "Lightweight Container Runtime for Far-Device Edge and iofog Node Agent",
+      homepage: "https://iofog.org",
+      topics+: [
+        "container-orchestration",
+        "containerd",
+        "containerd-shim",
+        "containers",
+        "crun",
+        "edge",
+        "edge-ai",
+        "edge-computing",
+        "k8s-cri",
+        "pod",
+        "runtime",
+        "wasm-shim",
+      ],
       web_commit_signoff_required: false,
       workflows+: {
         default_workflow_permissions: "read",
@@ -975,6 +990,14 @@ orgs.newOrg('iot.iofog', 'eclipse-iofog') {
             "push",
             "repository"
           ],
+        },
+      ],
+      variables+: [
+        orgs.newRepoVariable('EDGELET_CONTAINER_IMAGE') {
+          value: "ghcr.io/eclipse-iofog/edgelet",
+        },
+        orgs.newRepoVariable('EDGELET_GITHUB_REPO') {
+          value: "eclipse-iofog/edgelet",
         },
       ],
       branch_protection_rules: [
