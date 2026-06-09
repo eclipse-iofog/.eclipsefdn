@@ -959,9 +959,24 @@ orgs.newOrg('iot.iofog', 'eclipse-iofog') {
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
       description: "Lightweight Container Runtime for Far-Device Edge and iofog Node Agent",
+      homepage: "https://iofog.org",
+      topics+: [
+        "container-orchestration",
+        "containerd",
+        "containerd-shim",
+        "containers",
+        "crun",
+        "edge",
+        "edge-ai",
+        "edge-computing",
+        "k8s-cri",
+        "pod",
+        "runtime",
+        "wasm-shim",
+      ],
       web_commit_signoff_required: false,
       workflows+: {
-        default_workflow_permissions: "write",
+        default_workflow_permissions: "read",
       },
       webhooks: [
         orgs.newRepoWebhook('https://notify.travis-ci.org') {
@@ -977,14 +992,31 @@ orgs.newOrg('iot.iofog', 'eclipse-iofog') {
           ],
         },
       ],
+      variables+: [
+        orgs.newRepoVariable('EDGELET_CONTAINER_IMAGE') {
+          value: "ghcr.io/eclipse-iofog/edgelet",
+        },
+        orgs.newRepoVariable('EDGELET_GITHUB_REPO') {
+          value: "eclipse-iofog/edgelet",
+        },
+      ],
       branch_protection_rules: [
         orgs.newBranchProtectionRule('develop') {
-          required_approving_review_count: null,
-          requires_pull_request: false,
-          requires_status_checks: false,
+          requires_pull_request: true,
+          required_approving_review_count: 1,    
+          requires_status_checks: true,    
+          required_status_checks: [
+            "Edgelet CI / Lint",
+            "Edgelet CI / Test",
+            "CodeQL",
+          ],
+          dismisses_stale_reviews: true,
+          requires_code_owner_reviews: false,
         },
-        orgs.newBranchProtectionRule('master') {
-          requires_status_checks: false,
+        orgs.newBranchProtectionRule('main') {
+          requires_pull_request: true,
+          required_approving_review_count: 1,
+          requires_status_checks: true,
         },
       ],
     },
