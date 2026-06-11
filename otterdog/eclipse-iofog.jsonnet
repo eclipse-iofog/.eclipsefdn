@@ -986,6 +986,40 @@ orgs.newOrg('iot.iofog', 'eclipse-iofog') {
         orgs.newBranchProtectionRule('master') {
           requires_status_checks: false,
         },
+    orgs.newRepo('edgeops-console') {
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      default_branch: "develop",
+      delete_branch_on_merge: false,
+      dependabot_security_updates_enabled: true,
+      description: "A cloud-native operations console for managing edge computing workloads, nodes, and deployments across IoFog and PoT.",
+      web_commit_signoff_required: false,
+      workflows+: {
+        default_workflow_permissions: "write",
+      },
+      webhooks: [
+        orgs.newRepoWebhook('https://notify.travis-ci.org') {
+          events+: [
+            "create",
+            "delete",
+            "issue_comment",
+            "member",
+            "public",
+            "pull_request",
+            "push",
+            "repository"
+          ],
+        },
+      ],
+      branch_protection_rules: [
+        orgs.newBranchProtectionRule('develop') {
+          required_approving_review_count: null,
+          requires_pull_request: false,
+          requires_status_checks: false,
+        },
+        orgs.newBranchProtectionRule('master') {
+          requires_status_checks: false,
+        },
       ],
     },
   ],
